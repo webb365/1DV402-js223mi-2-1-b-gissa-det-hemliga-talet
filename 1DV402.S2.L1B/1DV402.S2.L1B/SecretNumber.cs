@@ -14,12 +14,15 @@ namespace _1DV402.S2.L1B
         private bool _canMakeGuess;
         private int _count;
 
+
         public SecretNumber()
         {
             _guessedNumbers = new int[MaxNumberOfGuesses];
             Initialize();
         }
-        public bool CanMakeGuess {
+
+        public bool CanMakeGuess 
+        {
             get
             {
                 foreach (int guessedNumber in _guessedNumbers)
@@ -41,7 +44,8 @@ namespace _1DV402.S2.L1B
             get { return _count; }
             private set { _count = value; }
         }
-        public int GuessesLeft {
+        public int GuessesLeft 
+        {
             get { return MaxNumberOfGuesses - Count; }
         }
 
@@ -57,11 +61,9 @@ namespace _1DV402.S2.L1B
 
         public bool MakeGuess(int number)
         {
-
-
-            if (Count >= MaxNumberOfGuesses)
+            if (!CanMakeGuess)
                 throw new ApplicationException();
-            else if (number < 1 || number > 100)
+            if (number < 1 || number > 100)
                 throw new ArgumentOutOfRangeException();
 
             foreach (int guessedNumber in _guessedNumbers)
